@@ -13,7 +13,7 @@ import NewCity from './components/NewCity.vue';
     <button id="button"  >Submit</button>
   </form>
    <NewCity :city="Varna"/>
-   <NewCity :key="index" v-for="(city, index) in this.cityArray?" :city="city"/>
+   <NewCity :key="index" v-for="(city, index) in this.cityArray" :city="city"/>
 </div>
 </template>
 
