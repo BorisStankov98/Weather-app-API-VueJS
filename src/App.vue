@@ -23,7 +23,7 @@ export default{
   name:"app",
   mounted(){
   console.log("asd")
-  }
+  },
   data(){
     return{
       cityArray:["sofia","varna","burgas","plovdiv"]
