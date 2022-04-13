@@ -12,6 +12,7 @@ import NewCity from './components/NewCity.vue';
     <input id="input" type="text" v-model="myText" placeholder="Type a city">
     <button id="button"  >Submit</button>
   </form>
+   <NewCity :city="Varna"/>
  <NewCity :key="index" v-for="(city, index) in this.cityArray" :city="city"/>
 </div>
 </template>
