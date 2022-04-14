@@ -19,7 +19,7 @@ export default{
     },
     data() {
         return {
-            innitialArray:["sofia","varna","burgas","plovdiv","varna"],
+            innitialArray:["sofia","varna","burgas","plovdiv","london"],
             apiKey: "a6f922dcdd663a60627025e5586baeff",
             dataArray: []
         };
@@ -28,21 +28,20 @@ export default{
         city: String,
     },
     methods: {
-       async callApi(){
-        this.innitialArray.forEach(element => {
-          axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${element}&appid=${this.apiKey}&units=metric`)
+       async callApi(place){
+       this.innitialArray.slice(place).forEach((element) => {
+       axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${element}&appid=${this.apiKey}&units=metric`)
             .then(res => {
             this.dataArray.push(res.data)
-        })    
+        }).catch(e =>{
+          alert(`${this.myText}is not in the database please try another one :)`)
+        })   
         })},
       addCity(){
       this.innitialArray.push(this.myText)
-      this.dataArray=[]
-      this.callApi()
-     console.log(this.dataArray)
+      this.callApi(this.innitialArray.length-1)
        }
     },
     components: { City }
 }
 </script>
-
