@@ -8,12 +8,8 @@ import NewCity from './components/NewCity.vue';
   <h1>Data for the bigger cities is preloaded</h1>
   <h3> you can also add some of your own via the form below:</h3>
   </div>
-  <form class="form" @submit.prevent="onSubmit" @submit="addCity">
-    <input id="input" type="text" v-model="myText" placeholder="Type a city">
-    <button id="button"  >Submit</button>
-  </form>
-   <NewCity :city="Varna"/>
-   <NewCity :key="index" v-for="(city, index) in this.cityArray" :city="city"/>
+ 
+ <NewCity/>
 </div>
 </template>
 
@@ -21,22 +17,16 @@ import NewCity from './components/NewCity.vue';
 <script>
 export default{
   name:"app",
-  mounted(){
-  console.log("asd")
-  },
-  data(){
-    return{
-      cityArray:["sofia","varna","burgas","plovdiv"]
-    }
-  },
   components:{
   NewCity,
   },
-  methods:{
-    addCity(){
-      this.cityArray.push(this.myText)
-      this.myText = ''
+  data(){
+    return{
+     
     }
+  },
+  methods:{
+    
   }
 }
 </script>

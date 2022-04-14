@@ -1,38 +1,48 @@
 <template>
-    <div class="city">
-        <div>
-        <h1>{{dataArray?.name}}</h1>
-        <h2>{{dataArray?.main.temp.toFixed(1)}} &#8451;</h2>
-        </div>
-        <img style="height:70px" :src='(` http://openweathermap.org/img/wn/${dataArray?.weather[0].icon}.png`)' alt="">
+<div>
+ <form class="form" @submit.prevent="onSubmit" @submit="addCity" >
+    <input  id="input" type="text" placeholder="Type a city" v-model="myText">
+    <button id="button">Submit</button>
+  </form>
+        <City :array = "dataArray"/>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import City from './City.vue'
 
 export default{
-    name:'form',
-   async mounted(){
-      await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${this.apiKey}&units=metric`)
-       .then(res =>{
-          
-           this.dataArray = res.data
-           console.log(this.dataArray)
-       })
+    name: "form",
+     mounted() {
+       this.callApi()
     },
-data(){
-    return{
-    apiKey : "a6f922dcdd663a60627025e5586baeff",
-    dataArray:null,
-    }
-},
-props:{
-    city:String,
-   
-},
-methods:{
-}
+    data() {
+        return {
+            innitialArray:["sofia","varna","burgas","plovdiv","varna"],
+            apiKey: "a6f922dcdd663a60627025e5586baeff",
+            dataArray: []
+        };
+    },
+    props: {
+        city: String,
+    },
+    methods: {
+       async callApi(){
+        this.innitialArray.forEach(element => {
+          axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${element}&appid=${this.apiKey}&units=metric`)
+            .then(res => {
+            this.dataArray.push(res.data)
+        })    
+        })},
+      addCity(){
+      this.innitialArray.push(this.myText)
+      this.dataArray=[]
+      this.callApi()
+     console.log(this.dataArray)
+       }
+    },
+    components: { City }
 }
 </script>
 

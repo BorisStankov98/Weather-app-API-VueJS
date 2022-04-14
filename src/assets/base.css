@@ -36,6 +36,7 @@ body{
   text-align: center;
 }
 .city{
+  flex-wrap: wrap;
   place-content: center;
   margin-bottom: 3rem;
   display: flex;
@@ -48,7 +49,10 @@ body{
 
   font-weight: normal;
 }
-
+.each-city{
+  margin: 2rem;
+  min-width: 100px;
+}
 header {
   line-height: 1.5;
 }
